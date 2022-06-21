@@ -6,7 +6,6 @@ const { response } = require("express");
 const protect = asyncHandler(async (req, res, next) => {
   let token;
 
-  console.log(res);
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
@@ -17,8 +16,6 @@ const protect = asyncHandler(async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_KEY);
 
       req.user = await User.findById(decoded.id);
-
-      console.log(decoded);
 
       next();
     } catch (error) {
