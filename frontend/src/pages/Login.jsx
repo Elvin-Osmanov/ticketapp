@@ -9,7 +9,6 @@ import Spinner from "../components/Spinner";
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
-
     password: "",
   });
 
@@ -26,12 +25,12 @@ const Login = () => {
       toast.error(message);
     }
 
-    if (isSuccess) {
+    if (isSuccess || user) {
       navigate("/");
     }
 
     dispatch(reset());
-  }, [isError, message, dispatch, isSuccess, navigate]);
+  }, [isError, message, dispatch, isSuccess, navigate, user]);
 
   const onChange = (e) => {
     setFormData((prevstate) => ({
